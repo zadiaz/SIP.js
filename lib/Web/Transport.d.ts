@@ -1,6 +1,7 @@
 import { Logger } from "../core";
 import { TypeStrings } from "../Enums";
 import { Transport as TransportBase } from "../Transport";
+import Websocket from "ws";
 export declare enum TransportStatus {
     STATUS_CONNECTING = 0,
     STATUS_OPEN = 1,
@@ -31,7 +32,7 @@ export declare class Transport extends TransportBase {
     static readonly C: typeof TransportStatus;
     type: TypeStrings;
     server: WsServer;
-    ws: WebSocket | undefined;
+    ws: Websocket | undefined;
     private connectionPromise;
     private connectDeferredResolve;
     private connectDeferredReject;

@@ -15,6 +15,7 @@ import { Utils } from "../Utils";
 
 import * as Modifiers from "./Modifiers";
 import { SessionDescriptionHandlerObserver } from "./SessionDescriptionHandlerObserver";
+const { mediaDevices, RTCPeerConnection } = require("wrtc");
 
 export interface WebSessionDescriptionHandlerOptions extends SessionDescriptionHandlerOptions {
   peerConnectionOptions?: PeerConnectionOptions;
@@ -53,7 +54,7 @@ export class SessionDescriptionHandler extends EventEmitter implements SessionDe
   }
 
   public type: TypeStrings;
-  public peerConnection!: RTCPeerConnection;
+  public peerConnection!: any;
   private options: any;
   private logger: Logger;
   private observer: SessionDescriptionHandlerObserver;
@@ -400,7 +401,7 @@ export class SessionDescriptionHandler extends EventEmitter implements SessionDe
   public on(name: string, callback: (...args: any[]) => void): this  { return super.on(name, callback); }
 
   protected getMediaStream(constraints: MediaStreamConstraints): Promise<MediaStream> {
-    return navigator.mediaDevices.getUserMedia(constraints);
+    return mediaDevices.getUserMedia(constraints);
   }
 
   // Internal functions

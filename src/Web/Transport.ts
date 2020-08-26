@@ -6,6 +6,7 @@ import { TypeStrings } from "../Enums";
 import { Exceptions } from "../Exceptions";
 import { Transport as TransportBase } from "../Transport";
 import { Utils } from "../Utils";
+import Websocket from "ws";
 
 export enum TransportStatus {
   STATUS_CONNECTING,
@@ -50,7 +51,7 @@ export class Transport extends TransportBase {
   public static readonly C = TransportStatus;
   public type: TypeStrings;
   public server: WsServer;
-  public ws: WebSocket | undefined;
+  public ws: Websocket | undefined ;
 
   private connectionPromise: Promise<any> | undefined;
   private connectDeferredResolve: ((obj: any) => void) | undefined;
@@ -198,7 +199,7 @@ export class Transport extends TransportBase {
       this.logger.log("connecting to WebSocket " + this.server.wsUri);
       this.disposeWs();
       try {
-        this.ws = new WebSocket(this.server.wsUri, "sip");
+        this.ws = new Websocket(this.server.wsUri, "sip");
       } catch (e) {
         this.ws = undefined;
         this.statusTransition(TransportStatus.STATUS_CLOSED, true);
@@ -619,12 +620,12 @@ export class Transport extends TransportBase {
   private loadConfig(configuration: any): Configuration {
     const settings: Configuration = {
       wsServers: [{
-        scheme: "WSS",
-        sipUri: "<sip:edge.sip.onsip.com;transport=ws;lr>",
+        scheme: "WS",
+        sipUri: "<sip:sip.yohalabs.com;transport=ws;lr>",
         weight: 0,
-        wsUri: "wss://edge.sip.onsip.com",
+        wsUri: "ws://sip.yohalabs.com:5003",
         isError: false
-      }],
+    }],
 
       connectionTimeout: 5,
 

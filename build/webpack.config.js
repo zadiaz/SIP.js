@@ -48,6 +48,7 @@ module.exports = function (env) {
   entry['sip-core' + (env.buildType === 'min' ? '.min' : '')] = mainDir + '/src/core/index.ts';
 
   return {
+    target: 'node',
     mode: mode,
     entry: entry,
     output: {

@@ -20,7 +20,10 @@
       "check-format",
       "allow-pascal-case",
       "allow-leading-underscore"
-    ]
+    ],
+    "ordered-imports":false,
+    "no-var-requires":false
+    
   },
   "rulesDirectory": []
 }
