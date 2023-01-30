@@ -8,7 +8,7 @@ So it can run on nodejs env.
 
 ## Download
 
-* npm: `npm install git:https://github.com/Winston87245/SIP.js.git#node-environment`
+* npm: `npm install git:https://github.com/zadiaz/SIP.js.git#node-environment`
 
 ## How to use
 
